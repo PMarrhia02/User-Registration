@@ -28,7 +28,36 @@ def valid_first_name():
     except Exception as e:
         print(f"Unexpected error: {e}")
 
+def valid_last_name():
+    """
+    Description :
+    Validates the first name.
+
+    - Must start with an uppercase letter.
+    - Remaining characters can be uppercase or lowercase.
+    - Minimum length: 3 characters.
+
+    Returns:
+        None
+    """
+    try:
+        pattern = r"^[A-Z][a-zA-Z]{2,}$"
+        last_name = input("Enter last name: ").strip()
+        if not last_name:
+            raise ValueError("Last name cannot be empty.")
+        if re.match(pattern, last_name):
+            print("It is a valid name.")
+        else:
+            print("It is an invalid name. It should start with a capital letter and have at least 3 characters.")
+
+    except ValueError as ve:
+        print(f"Error: {ve}")
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+
+
 def main():
     valid_first_name()
+    valid_last_name()
 if __name__ == "__main__":
     main()

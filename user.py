@@ -197,6 +197,34 @@ def password_numeric():
     except ValueError as ve:
         print(f"Error: {ve}")
 
+def password_special_character():
+    """
+    Validates if a password contains at least one special character.
+
+    - Must be at least 8 characters long.
+    - Must contain at least one uppercase letter.
+    - Must contain at least one numeric digit.
+    - Must contain at least one special character.
+
+    Returns:
+        None
+    """
+    try:
+        password = input("Enter a password for special character validation: ").strip()
+
+        if not password:
+            raise ValueError("Password cannot be empty.")
+
+        pattern = r"^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[^a-zA-Z0-9]).{8,}$"
+
+        if re.match(pattern, password):
+            print("Valid password (contains at least one uppercase letter, one number, and one special character).")
+        else:
+            print("Invalid password. Must contain at least one uppercase letter, one number, and one special character.")
+
+    except ValueError as ve:
+        print(f"Error: {ve}")
+
 def main():
     valid_first_name()
     valid_last_name()
@@ -205,5 +233,6 @@ def main():
     validate_password()
     password_uppercase()
     password_numeric()
+    password_special_character()
 if __name__ == "__main__":
     main()

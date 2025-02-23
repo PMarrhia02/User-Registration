@@ -86,10 +86,39 @@ def valid_email():
         print(f"Unexpected error: {e}")
 
 
+def valid_mobile_number():
+    """
+    Validates an Indian mobile number.
+
+    - Must start with '91'.
+    - Must have 10 digits starting with 6-9.
+
+    Returns:
+        None
+    """
+    try:
+        pattern = r"^(91)[6-9][0-9]{9}$"
+        mobile_number = input("Enter your phone number: ").strip()
+
+        if not mobile_number:
+            raise ValueError("Mobile number cannot be empty.")
+
+        if re.match(pattern, mobile_number):
+            print("Valid mobile number.")
+        else:
+            print("Not a valid number.")
+
+    except ValueError as ve:
+        print(f"Error: {ve}")
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+
+
 
 def main():
     valid_first_name()
     valid_last_name()
     valid_email()
+    valid_mobile_number()
 if __name__ == "__main__":
     main()

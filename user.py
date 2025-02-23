@@ -113,6 +113,32 @@ def valid_mobile_number():
     except Exception as e:
         print(f"Unexpected error: {e}")
 
+def validate_password():
+    """
+    Validates if a password meets minimum length criteria.
+    
+    - Must be at least 8 characters long.
+
+    Returns:
+        None
+    """
+    try:
+        password = input("Enter your password: ").strip()
+
+        if not password:
+            raise ValueError("Password cannot be empty.")
+
+        pattern = r"^.{8,}$"
+        if re.match(pattern, password):
+            print("Valid password.")
+        else:
+            print("Invalid password. It must be at least 8 characters long.")
+
+    except ValueError as ve:
+        print(f"Error: {ve}")
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+
 
 
 def main():
@@ -120,5 +146,6 @@ def main():
     valid_last_name()
     valid_email()
     valid_mobile_number()
+    validate_password()
 if __name__ == "__main__":
     main()

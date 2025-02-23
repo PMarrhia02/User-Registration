@@ -167,10 +167,35 @@ def password_uppercase():
     except Exception as e:
         print(f"Unexpected error: {e}")
 
+import re
 
+def password_numeric():
+    """
+    Validates if a password contains at least one numeric digit and one uppercase letter.
 
+    - Must be at least 8 characters long.
+    - Must contain at least one uppercase letter.
+    - Must contain at least one digit.
 
+    Returns:
+        None
+    """
+    try:
+        password = input("Enter a password for numeric validation: ").strip()
 
+        if not password:
+            raise ValueError("Password cannot be empty.")
+
+        # Corrected Regex Pattern
+        pattern = r"^(?=.*[A-Z])(?=.*\d).{8,}$"
+
+        if re.match(pattern, password):
+            print("✅ Valid password (contains at least one uppercase letter and one number).")
+        else:
+            print("❌ Invalid password. It must have at least one uppercase letter and one number.")
+
+    except ValueError as ve:
+        print(f"Error: {ve}")
 
 def main():
     valid_first_name()
@@ -179,5 +204,6 @@ def main():
     valid_mobile_number()
     validate_password()
     password_uppercase()
+    password_numeric()
 if __name__ == "__main__":
     main()
